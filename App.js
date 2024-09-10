@@ -1,13 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import CategoryScreen from './screens/CategoryScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
-import { MEALS } from './data/dummy-data';
 import MealDetails from './screens/MealDetails';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import FavoritesScreen from './screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator(){
+  return(
+    <Drawer.Navigator screenOptions={{
+      headerStyle: { 
+        backgroundColor: '#351401',
+      },
+      headerTintColor: '#fff',
+      sceneContainerStyle: {
+        backgroundColor: '#3f2f25',
+      }
+    }}>
+      <Drawer.Screen name="Categories" component={CategoryScreen} options={{title: 'All Categories'}}/>
+      <Drawer.Screen name="Favorites" component={FavoritesScreen}/>
+    </Drawer.Navigator>
+  )
+}
 
 export default function App() {
   return (
@@ -27,22 +46,16 @@ export default function App() {
 
           {/* CATEGORIES PAGE */}
           <Stack.Screen 
-            name="MealsCategories" 
-            component={CategoryScreen} 
+            name="Drawer" 
+            component={DrawerNavigator} 
             options={{
-              title: 'Categories',
+              headerShown: false
           }}/>
 
           {/* MEALS OVERVIEW PAGE */}
           <Stack.Screen 
             name="MealsOverview" 
             component={MealsOverviewScreen}
-            // options={({ route, navigation }) => {
-            //   const { categoryId } = route.params;
-            //   return {
-            //     title: categoryId,
-            //   };
-            // }}
           />
 
           {/* MEAL DETAILS PAGE */}
