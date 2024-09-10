@@ -1,7 +1,7 @@
 <!-- ![Example Image](/img/) -->
 
 # RN-Food-Menu-Selector
-Small React Native application through which I learned how to handle basic navigation.
+Small React Native application through which I learned how to handle navigation.
 
 ## Curriculum
 [React Native - The Practical Guide [2024]](https://www.udemy.com/course/react-native-the-practical-guide/)

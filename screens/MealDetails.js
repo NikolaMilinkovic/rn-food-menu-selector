@@ -1,19 +1,26 @@
 import React, { useLayoutEffect } from 'react'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native'
 import { MEALS } from '../data/dummy-data';
 import List from '../components/MealDetails/List';
+import IconButton from '../components/IconButton';
 
 function MealDetails({ route, navigation }) {
   const { data } = route.params;
 
+  function headerButton(){
+    console.log('Boobs or Vagana?');
+  }
   
   // Set the name in the menu dynamically
   useLayoutEffect(() => {
     const mealTitle = MEALS.find((meal) => meal.id === data.id).title;
     navigation.setOptions({
+      headerRight: () => {
+        return <IconButton onPress={headerButton} icon='star' color='white'/>
+      },
       title: mealTitle,
     });
-  },[data, navigation])
+  },[data, navigation, headerButton])
 
   return (
     <ScrollView style={styles.mainContainer}>
